@@ -2,22 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
-    />
-    <title>JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise</title>
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./resources/css/all.min.css" />
     <link rel="stylesheet" href="./resources/css/main.css" />
   </head>
   <body>
-    <h1 id="p1">Hello</h1>
-    <span id="ch">change</span>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum veniam
-      reprehenderit, asperiores cum temporibus ratione, reiciendis ipsam iure
-      deserunt laboriosam magni nobis ea totam cumque hic minus eos ducimus
-      perspiciatis.
-    </p>
+    <div class="container mt-5">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="fw-bolder fs-max mb-5">Quote of the Day</h1>
+        <h2 class="mb-5">Press the button below to recieve a random quote!</h2>
+
+        <button onclick="generateQuote()" class="btn btn-primary p-4 mb-4">
+          New Quote
+        </button>
+        <div id="generated-quote" class="fs-2"></div>
+      </div>
+    </div>
+    <script src="./resources/js/bootstrap.bundle.min.js"></script>
     <script src="./resources/js/script.js"></script>
   </body>
 </html>
