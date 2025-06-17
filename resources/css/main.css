@@ -1,3 +1,58 @@
-.fs-max {
-  font-size: 4rem !important;
+.w-15 {
+  width: 15% !important;
+}
+
+body {
+  background-color: #f7ecde;
+}
+
+h1.header-region {
+  font-family: "Pacifico", cursive;
+  letter-spacing: 1px;
+}
+
+h1.header-region::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 70%;
+  z-index: -1;
+  background-color: #fec260;
+  transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+  -moz-transition: 0.3s all;
+  -ms-transition: 0.3s all;
+  -o-transition: 0.3s all;
+}
+
+h1.header-region:hover::after {
+  top: 40%;
+}
+
+.custom-border {
+  border: 2px dotted black;
+}
+
+.book {
+  background: linear-gradient(
+    90deg,
+    rgba(87, 199, 133, 1) 50%,
+    rgba(237, 221, 83, 1) 100%
+  );
+  color: transparent;
+  background-clip: text;
+}
+
+.book-before {
+  color: rgba(87, 199, 133, 1);
+}
+
+.book-after {
+  color: rgba(237, 221, 83, 1);
+}
+
+td {
+  padding: 10px;
 }
