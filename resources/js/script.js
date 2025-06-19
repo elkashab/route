@@ -10,7 +10,7 @@ var bookmarkRecord = document.getElementById("bookmarkTable");
 var addBookmarkButton = document.getElementById("addBookmark");
 var searchedBookmark = [];
 var bookmarkNameRegExp = /^[A-Za-z]{3,}/;
-var bookmarkURLRegExp = /http[s]?:\/\/[a-z]{3,}\.(com|net|org)/;
+var bookmarkURLRegExp = /http[s]?:\/\/[a-z]{3,}[\.[a-z]{1,}]?\.(com|net|org)/;
 
 // 2) Check if local storage contains stored bookmark, and if it has a value , then display it when the application run
 if (localStorage.getItem("allBookmark") != null) {
