@@ -6,6 +6,7 @@ var siteURL = document.getElementById("siteURL");
 var bookmarkId = Number(localStorage.getItem("id"));
 var bookmarkRecord = document.getElementById("bookmarkTable");
 var addBookmarkButton = document.getElementById("addBookmark");
+var searchedBookmark = [];
 var urlRegExp = /http[s]?:\/\/[a-z]{3,}\.(com|net|org)/;
 
 // 2) Check if local storage contains stored bookmark, and if it has a value , then display it when the application run
@@ -27,6 +28,7 @@ function addBookmark() {
   };
 
   allBookmark.push(bookmark);
+  reArrangeArrayIndex(allBookmark);
   displayAllBookmark();
   updateSavedBookmark();
   clearForm();
@@ -35,41 +37,13 @@ function addBookmark() {
 // Display Bookmark in table , and for each record , we will add index property to its array
 function displayAllBookmark() {
   var bookmarkTableRecords = "";
+
   for (var i = 0; i < allBookmark.length; i++) {
-    allBookmark[i].index = i;
-    bookmarkTableRecords += `<tr class="border border-bottom border-1">
-            <td>${allBookmark[i].index + 1}</td>
-            <td>${allBookmark[i].name}</td>
-            <td>
-              <div class="btn btn-success">   
-                <a
-                  class="text-white text-decoration-none"
-                  href="${allBookmark[i].url}"
-                  target="_blank"
-                  >
-                  <i class="fa-solid fa-eye"></i>
-                  Visit
-                  </a
-                >
-              </div>
-            </td>
-            <td>
-              <div class="btn btn-danger">
-              <a onclick="deleteBookmark(${i})" class="text-white text-decoration-none">
-                <i class="fa-solid fa-trash"></i>
-                <span>Delete</span>
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="btn btn-primary">
-              <a onclick="editBookmark(${i})" class="text-white text-decoration-none">
-                <i class="fa-solid fa-save"></i>
-                <span>Edit</span>
-                </a>
-              </div>
-            </td>
-          </tr>`;
+    bookmarkTableRecords += printedHTML(
+      i,
+      allBookmark[i].name,
+      allBookmark[i].url
+    );
   }
   bookmarkRecord.innerHTML = bookmarkTableRecords;
 }
@@ -82,6 +56,7 @@ function clearAllBookmark() {
 
 function deleteBookmark(idx) {
   allBookmark.splice(idx, 1);
+  reArrangeArrayIndex(allBookmark);
   displayAllBookmark();
   updateSavedBookmark();
 }
@@ -108,6 +83,63 @@ function updateBookmark(idx) {
   clearForm();
 }
 
-function validateBookmarkInput() {
-  urlRegExp.test(siteURL.value);
+function searchBookmark(searchTerm) {
+  var printedSearch = "";
+  searchedBookmark = [];
+  for (var i = 0; i < allBookmark.length; i++) {
+    if (allBookmark[i].name.toLowerCase().includes(searchTerm.toLowerCase())) {
+      searchedBookmark.push(allBookmark[i]);
+    }
+  }
+  for (var i = 0; i < searchedBookmark.length; i++) {
+    printedSearch += printedHTML(
+      searchedBookmark[i].index,
+      searchedBookmark[i].name,
+      searchedBookmark[i].url
+    );
+  }
+  bookmarkRecord.innerHTML = printedSearch;
+}
+
+function reArrangeArrayIndex(sourceArray) {
+  for (var i = 0; i < sourceArray.length; i++) {
+    sourceArray[i].index = i;
+  }
+  return sourceArray;
+}
+
+function printedHTML(index, name, url) {
+  return `<tr class="border border-bottom border-1">
+            <td>${index + 1}</td>
+            <td>${name}</td>
+            <td>
+              <div class="btn btn-success">   
+                <a
+                  class="text-white text-decoration-none"
+                  href="${url}"
+                  target="_blank"
+                  >
+                  <i class="fa-solid fa-eye"></i>
+                  Visit
+                  </a
+                >
+              </div>
+            </td>
+            <td>
+              <div class="btn btn-danger">
+              <a onclick="deleteBookmark(${index})" class="text-white text-decoration-none">
+                <i class="fa-solid fa-trash"></i>
+                <span>Delete</span>
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="btn btn-primary">
+              <a onclick="editBookmark(${index})" class="text-white text-decoration-none">
+                <i class="fa-solid fa-save"></i>
+                <span>Edit</span>
+                </a>
+              </div>
+            </td>
+          </tr>`;
 }
