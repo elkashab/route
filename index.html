@@ -37,7 +37,11 @@
             class="form-control"
             id="bookmarkName"
             placeholder="Bookmark Name"
+            onkeyup="validateBookmarkName();"
           />
+          <div id="bookmarkNameError" class="invalid-feedback">
+            Bookmark name must be three character or more.
+          </div>
         </div>
         <div class="mb-3">
           <label for="siteURL" class="form-label fw-bold">
@@ -45,24 +49,29 @@
             Site URL
           </label>
           <input
-            onkeyup="validateBookmarkInputs()"
+            onkeyup="validateBookmarkURL()"
             type="url"
             class="form-control"
             id="siteURL"
             placeholder="Site URL"
           />
+          <div id="bookmarkURLError" class="invalid-feedback">
+            Bookmark url must start with http(s)://.
+          </div>
         </div>
-        <div class="d-flex justify-content-between">
-          <button
-            id="addBookmark"
-            onclick="addBookmark();"
-            class="btn btn-warning w-15 me-3"
-          >
-            Add Bookmark
-          </button>
-          <button onclick="clearAllBookmark();" class="btn btn-danger w-15">
-            Clear All Bookmark
-          </button>
+        <div class="row">
+          <div class="d-flex justify-content-between">
+            <button
+              id="addBookmark"
+              onclick="addBookmark();"
+              class="btn btn-warning col-3 me-3"
+            >
+              Add Bookmark
+            </button>
+            <button onclick="clearAllBookmark();" class="btn btn-danger col-3">
+              Clear All Bookmark
+            </button>
+          </div>
         </div>
       </div>
       <hr class="custom-border opacity-100" />
