@@ -1,6 +1,7 @@
 // Prepare the following
 //  1) Required variables that will be used across the application
 var allBookmark = [];
+var searchedBookmark = [];
 var bookmarkName = document.getElementById("bookmarkName");
 var bookmarkNameError = document.getElementById("bookmarkNameError");
 var siteURL = document.getElementById("siteURL");
@@ -8,7 +9,6 @@ var bookmarkURLError = document.getElementById("bookmarkURLError");
 var bookmarkId = Number(localStorage.getItem("id"));
 var bookmarkRecord = document.getElementById("bookmarkTable");
 var addBookmarkButton = document.getElementById("addBookmark");
-var searchedBookmark = [];
 var bookmarkNameRegExp = /^[A-Za-z]{3,}/;
 var bookmarkURLRegExp = /http[s]?:\/\/[a-z]{3,}[\.[a-z]{1,}]?\.(com|net|org)/;
 
