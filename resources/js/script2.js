@@ -9,12 +9,15 @@ let allMessages = [
   { name: "Password is required" },
   { name: "This user is not registered" },
   { name: "Invalid username or password" },
+  { name: "This Email already Registered" },
+  { name: "Registered Successfully" },
 ];
 
 let userEmail = document.querySelector("#userEmail");
 let userPassword = document.querySelector("#userPassword");
 let loginBtn = document.querySelector("#login");
 let errorMsg = document.querySelector("#error-msg");
+let userName = "";
 
 /* 
     Application Storage Intilization
@@ -46,6 +49,7 @@ function validateUserLogin() {
 
     if (isValidEmail === 1 && allUsers[i].password === userPassword.value) {
       isValidLogin = 1;
+      userName = allUsers[i].name;
     }
   }
 
@@ -73,6 +77,6 @@ loginBtn.addEventListener("click", function () {
     errorMsg.innerText = "";
     errorMsg.classList.add("d-none");
     loginBtn.setAttribute("href", "./home.html");
-    localStorage.setItem("sessionUsername", userEmail.value);
+    localStorage.setItem("sessionUsername", userName);
   }
 });
