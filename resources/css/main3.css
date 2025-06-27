@@ -1,4 +1,5 @@
 body {
+  height: 100vh;
   background-color: #24353f;
 }
 
@@ -21,4 +22,10 @@ input::placeholder {
 
 p a:hover {
   text-decoration: underline !important;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center; /* توسيط أفقي */
+  align-items: center;
 }
